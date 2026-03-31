@@ -1,66 +1,111 @@
 import { useState } from 'react'
 import { registerUser } from '../services/api'
+import '../src/styles/auth.css'
 
 interface Props {
   onSwitch: () => void
 }
 
-function Register({ onSwitch }: Props) {
+export default function Register({ onSwitch }: Props) {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [message, setMessage] = useState('')
   const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-    setMessage('')
 
-    const res = await registerUser({ email, password, name })
+    const res = await registerUser({ name, email, password })
 
-    if (res.id) {
-      setMessage('User created successfully. You can login now.')
-    } else {
-      setError(res.message || 'Registration failed')
+    if (!res.id) {
+      setError(res.message || 'No se pudo crear la cuenta')
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-      <h2>Register</h2>
-      <input
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br />
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <br />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <br />
-      <button type="submit">Register</button>
-      {message && <p style={{ color: 'green' }}>{message}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <p>
-        Already have an account?{' '}
-        <button type="button" onClick={onSwitch}>
-          Login
-        </button>
-      </p>
-    </form>
+    <div className="auth-container">
+
+      {/* LEFT SIDE */}
+      <div className="auth-left">
+        <div className="auth-logo">TSM</div>
+        <h1>Únete al equipo</h1>
+        <p>
+          Crea tu cuenta gratis y empieza a organizar tus proyectos
+          de manera más clara, eficiente y profesional.
+        </p>
+
+        <ul className="auth-features">
+          <li>Sprint planning simplificado</li>
+          <li>Colaboración en tiempo real</li>
+          <li>Reportes automáticos</li>
+        </ul>
+      </div>
+
+      {/* RIGHT SIDE */}
+      <div className="auth-right">
+        <div className="auth-form">
+
+          <div className="auth-mobile-logo">
+            <div className="auth-logo">TSM</div>
+          </div>
+
+          <h2>Crear cuenta</h2>
+          <div className="auth-subtitle">
+            Completa tus datos para comenzar
+          </div>
+
+          <form onSubmit={handleSubmit}>
+
+            <div className="auth-field">
+              <label>Nombre completo</label>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div className="auth-field">
+              <label>Correo electrónico</label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="auth-field">
+              <label>Contraseña</label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            {error && (
+              <div style={{ color: '#D55E00', marginBottom: 12 }}>
+                ⚠ {error}
+              </div>
+            )}
+
+            <button className="auth-button" type="submit">
+              Crear cuenta
+            </button>
+
+          </form>
+
+          <div className="auth-link">
+            ¿Ya tienes cuenta?{' '}
+            <button onClick={onSwitch}>Inicia sesión</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
   )
 }
-
-export default Register

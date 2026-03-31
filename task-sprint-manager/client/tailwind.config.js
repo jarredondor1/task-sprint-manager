@@ -8,16 +8,16 @@ export default {
     extend: {
       colors: {
         primary: 'var(--color-primary)',
-        'primary-light': 'var(--color-primary-light)',
         secondary: 'var(--color-secondary)',
         success: 'var(--color-success)',
         warning: 'var(--color-warning)',
-        danger: 'var(--color-danger)',
-        'gray-900': 'var(--color-gray-900)',
-        'gray-700': 'var(--color-gray-700)',
-        'gray-500': 'var(--color-gray-500)',
-        'gray-300': 'var(--color-gray-300)',
-        'gray-100': 'var(--color-gray-100)'
+        error: 'var(--color-error)',
+        neutral900: 'var(--color-neutral-900)',
+        neutral800: 'var(--color-neutral-800)',
+        neutral700: 'var(--color-neutral-700)',
+        neutral500: 'var(--color-neutral-500)',
+        neutral100: 'var(--color-neutral-100)',
+        white: 'var(--color-white)'
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif']

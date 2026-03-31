@@ -1,0 +1,133 @@
+/* ================= DASHBOARD ================= */
+
+.dashboard-container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ===== SPRINT BANNER ===== */
+
+.sprint-banner {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sprint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sprint-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.sprint-dates {
+  font-size: 14px;
+  color: #64748B;
+}
+
+.sprint-remaining {
+  font-weight: 600;
+}
+
+.progress-large {
+  height: 16px;
+  background: #E2E8F0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.progress-large-bar {
+  height: 100%;
+  background: #0072B2;
+}
+
+.mini-stats {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ===== KPI CARDS ===== */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kpi-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.kpi-label {
+  font-size: 14px;
+  color: #64748B;
+}
+
+.kpi-trend {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Color helpers */
+
+.bg-soft-blue { background: rgba(0,114,178,0.1); }
+.bg-soft-green { background: rgba(0,158,115,0.1); }
+.bg-soft-red { background: rgba(213,94,0,0.1); }
+.bg-soft-yellow { background: rgba(230,159,0,0.1); }
+
+.text-green { color: #009E73; }
+.text-red { color: #D55E00; }
+.text-blue { color: #0072B2; }
+.text-yellow { color: #E69F00; }
+
+@media (max-width: 1200px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -2,4 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './theme.css';
+@import './src/styles/theme.css';

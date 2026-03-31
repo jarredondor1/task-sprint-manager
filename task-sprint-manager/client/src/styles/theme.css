@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Accessible palette for color blindness */
+  --color-primary: #0072B2;
+  --color-secondary: #E69F00;
+  --color-success: #009E73;
+  --color-error: #D55E00;
+  --color-warning: #F0E442;
+
+  --color-neutral-900: #1a1a2e;
+  --color-neutral-700: #4a4a6a;
+  --color-neutral-100: #F8F9FA;
+  --color-white: #FFFFFF;
+
+  /* Radius */
+  --radius-card: 8px;
+  --radius-button: 6px;
+  --radius-modal: 12px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-modal: 0 10px 30px rgba(15, 23, 42, 0.12);
+
+  /* Transition */
+  --transition-base: all 200ms ease;
+}
+
+html, body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-900);
+}
+
+* {
+  transition: var(--transition-base);
+}
+
+.card-base {
+  background: var(--color-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.modal-base {
+  border-radius: var(--radius-modal);
+  box-shadow: var(--shadow-modal);
+}
+
+.btn-base {
+  border-radius: var(--radius-button);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease forwards;
+}

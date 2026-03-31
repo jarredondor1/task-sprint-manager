@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { loginUser } from '../services/api'
+import '../src/styles/auth.css'
 
 interface Props {
   onSwitch: () => void
   onAuth: (token: string) => void
 }
 
-function Login({ onSwitch, onAuth }: Props) {
+export default function Login({ onSwitch, onAuth }: Props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -20,107 +21,77 @@ function Login({ onSwitch, onAuth }: Props) {
     if (res.token) {
       onAuth(res.token)
     } else {
-      setError(res.message || 'Login failed')
+      setError(res.message || 'Credenciales inválidas')
     }
   }
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #0f172a, #1e293b)',
-        padding: '1rem'
-      }}
-    >
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          width: '100%',
-          maxWidth: 420,
-          background: '#ffffff',
-          padding: '2rem',
-          borderRadius: 12,
-          boxShadow: '0 20px 45px rgba(0,0,0,0.25)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem'
-        }}
-      >
-        <h2 style={{ margin: 0, textAlign: 'center', color: '#0f172a' }}>
-          Welcome Back
-        </h2>
+    <div className="auth-container">
 
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{
-            padding: '0.75rem 1rem',
-            borderRadius: 8,
-            border: '1px solid #cbd5e1',
-            fontSize: '0.95rem'
-          }}
-        />
+      {/* LEFT SIDE */}
+      <div className="auth-left">
+        <div className="auth-logo">TSM</div>
+        <h1>Task & Sprint Manager</h1>
+        <p>Organiza tu trabajo. Acelera tu entrega.</p>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{
-            padding: '0.75rem 1rem',
-            borderRadius: 8,
-            border: '1px solid #cbd5e1',
-            fontSize: '0.95rem'
-          }}
-        />
+        <ul className="auth-features">
+          <li>Gestión de sprints ágiles</li>
+          <li>Backlog priorizado</li>
+          <li>Métricas en tiempo real</li>
+        </ul>
+      </div>
 
-        <button
-          type="submit"
-          style={{
-            padding: '0.8rem',
-            borderRadius: 8,
-            border: 'none',
-            background: '#0f172a',
-            color: '#ffffff',
-            fontWeight: 600,
-            cursor: 'pointer'
-          }}
-        >
-          Sign In
-        </button>
+      {/* RIGHT SIDE */}
+      <div className="auth-right">
+        <div className="auth-form">
 
-        {error && (
-          <p style={{ margin: 0, color: '#dc2626', fontSize: '0.9rem' }}>
-            {error}
-          </p>
-        )}
+          <div className="auth-mobile-logo">
+            <div className="auth-logo">TSM</div>
+          </div>
+          <h2>Bienvenido de vuelta</h2>
+          <div className="auth-subtitle">Ingresa tus credenciales</div>
 
-        <p style={{ margin: 0, textAlign: 'center', fontSize: '0.9rem' }}>
-          No account?{' '}
-          <button
-            type="button"
-            onClick={onSwitch}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#2563eb',
-              cursor: 'pointer',
-              fontWeight: 500
-            }}
-          >
-            Register
-          </button>
-        </p>
-      </form>
+          <form onSubmit={handleSubmit}>
+
+            <div className="auth-field">
+              <label>Correo electrónico</label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="auth-field">
+              <label>Contraseña</label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            {error && (
+              <div style={{ color: '#D55E00', marginBottom: 12 }}>
+                ⚠ {error}
+              </div>
+            )}
+
+            <button className="auth-button" type="submit">
+              Iniciar sesión
+            </button>
+
+          </form>
+
+          <div className="auth-link">
+            ¿No tienes cuenta?{' '}
+            <button onClick={onSwitch}>Regístrate</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
-
-export default Login
