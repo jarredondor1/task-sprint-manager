@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   const [view, setView] = useState<'login' | 'register'>('login')
@@ -22,23 +23,19 @@ function App() {
   }
 
   if (token) {
-    return (
-      <div style={{ padding: 40, fontFamily: 'Arial' }}>
-        <h1>Dashboard</h1>
-        <p>Authenticated ✅</p>
-        <button onClick={logout}>Logout</button>
-      </div>
-    )
+    return <Dashboard onLogout={logout} />
   }
 
   return (
-    <div style={{ padding: 40, fontFamily: 'Arial' }}>
-      <h1>Task & Sprint Manager</h1>
-      {view === 'login' ? (
-        <Login onSwitch={() => setView('register')} onAuth={handleAuth} />
-      ) : (
-        <Register onSwitch={() => setView('login')} />
-      )}
+    <div className="min-h-screen flex items-center justify-center px-6">
+      <div className="w-full max-w-md">
+        <h1 className="mb-6 text-center">Task & Sprint Manager</h1>
+        {view === 'login' ? (
+          <Login onSwitch={() => setView('register')} onAuth={handleAuth} />
+        ) : (
+          <Register onSwitch={() => setView('login')} />
+        )}
+      </div>
     </div>
   )
 }
